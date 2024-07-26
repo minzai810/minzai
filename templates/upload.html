@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload and Download Files</title>
+</head>
+<body>
+    <h1>Upload a File</h1>
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('upload_and_download') }}">
+        <label for="new_filename">New Filename:</label>
+        <input type="text" id="new_filename" name="new_filename">
+        <input type="file" name="photo" accept="image/*, .txt, .pdf, .doc, .docx, .csv">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if files %}
+    <h2>Uploaded Files</h2>
+    <ul>
+        {% for file in files %}
+        <li><a href="{{ url_for('uploaded_file', filename=file) }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
